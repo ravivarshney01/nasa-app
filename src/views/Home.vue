@@ -1,18 +1,22 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <h1>Home</h1>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import axios from "axios";
 
 export default {
   name: "Home",
-  components: {
-    HelloWorld
+  created() {
+    axios
+      .get(
+        "https://api.nasa.gov/neo/rest/v1/neo/browse?page=1&size=10&api_key=Z7JVQif7Ntt7szEp8b0cQuZf8gFJ1Wo50FVh8San"
+      )
+      .then(res => {
+        console.log(res);
+      });
   }
 };
 </script>
