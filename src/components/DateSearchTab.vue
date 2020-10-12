@@ -47,8 +47,8 @@
         :key="k"
         :asteroid="asteroid"
       />
-      <p v-if="err" class="text-red-500">{{ err }}</p>
     </div>
+    <p v-if="err" class="text-red-500">{{ err }}</p>
   </div>
 </template>
 

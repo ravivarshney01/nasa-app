@@ -4,8 +4,8 @@
       class="text-xs font-bold uppercase px-5 py-3 shadow-md rounded block leading-normal"
       :class="
         openTab === tabNo
-          ? 'text-white bg-' + color + '-600'
-          : 'text-' + color + '-600 bg-white'
+          ? 'text-white bg-' + color + '-500'
+          : 'text-' + color + '-500 bg-white'
       "
       @click="setOpenTab(tabNo)"
       data-toggle="tab"
