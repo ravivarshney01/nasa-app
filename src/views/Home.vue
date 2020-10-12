@@ -13,6 +13,12 @@
                 :key="i"
                 :asteroid="asteroid"
               />
+              <button
+                class="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded mx-2"
+                @click="loadMore"
+              >
+                Load More
+              </button>
             </template>
           </tab-content>
           <tab-content :openTab="openTab" :tabNo="2">
@@ -37,7 +43,7 @@ import AsteroidVue from "../components/Asteroid.vue";
 import TabsVue from "../components/Tabs.vue";
 import TabContentVue from "../components/TabContent.vue";
 import SearchTabVue from "../components/SearchTab.vue";
-import DateSearchVue from "../components/DateSearch.vue";
+import DateSearchVue from "../components/DateSearchTab.vue";
 import { LIMIT } from "../constant";
 
 export default {
@@ -54,13 +60,26 @@ export default {
       openTab: 1,
       color: "teal",
       asteroids: [],
-      id: null,
-      result: null
+      page: 1
     };
   },
   methods: {
     setOpenTab(k) {
       this.openTab = k;
+    },
+    loadMore() {
+      this.page++;
+      axios
+        .get(
+          "https://api.nasa.gov/neo/rest/v1/neo/browse?page=" +
+            this.page +
+            "&size=" +
+            LIMIT +
+            "&api_key=Z7JVQif7Ntt7szEp8b0cQuZf8gFJ1Wo50FVh8San"
+        )
+        .then(res => {
+          this.asteroids.push(...res.data.near_earth_objects);
+        });
     }
   },
   created() {
